@@ -9,7 +9,7 @@ services:
     depends_on:
       - api
     networks:
-      - wms_network
+      - wms-network
 
   api:
     build: ./api
@@ -23,7 +23,7 @@ services:
     depends_on:
       - mssql
     networks:
-      - wms_network
+      - wms-network
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
