@@ -20,7 +20,7 @@ const Login = () => {
     try {
       setLoading(true);
 
-      const res = await api.post("/api/auth/login", form);
+      const res = await api.post("/auth/login", form);
 
       const { accessToken, refreshToken } = res.data.data;
 
