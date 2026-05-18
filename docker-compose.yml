@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+  api:
+    build: ./backend
+    ports:
+      - "5296:5296"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnectionString=Server=mssql;Database=WarehouseManagementSystem;User=sa;Password=YourStrong!Pass123
+
+    depends_on:
+      - mssql
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "P@ss123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
