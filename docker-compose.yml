@@ -22,7 +22,7 @@ services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      SA_PASSWORD: "StrongP@ass1234"
+      SA_PASSWORD: "Str0ngP@ssw0rd!2026"
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
