@@ -54,7 +54,7 @@ const AdminDashboard = () => {
     <>
       <div className="page-header d-print-none mb-4">
         <div className="container-xl">
-          <h2 className="page-title">D</h2>
+          <h2 className="page-title">Salam</h2>
         </div>
       </div>
 
