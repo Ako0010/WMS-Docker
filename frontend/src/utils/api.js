@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useTokens } from "../stores/tokenStore.js";
+import { useTokens } from "../stores/tokenstore";
 
 
 const api = axios.create({

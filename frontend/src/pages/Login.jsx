@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../utils/api";
-import { useTokens } from "../stores/tokenStore";
+import { useTokens } from "../stores/tokenstore";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom";
