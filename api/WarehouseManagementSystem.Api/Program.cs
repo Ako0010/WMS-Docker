@@ -18,10 +18,11 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<WarehouseManagementDBContext>();
     db.Database.Migrate();
+
+    await app.EnsureRolesSeededAsync();
 }
 
 app.UseWarehouseManagementPipeline();
 
-await app.EnsureRolesSeededAsync();
 
 app.Run();
