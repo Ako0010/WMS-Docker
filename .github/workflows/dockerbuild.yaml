@@ -75,6 +75,6 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            sudo cp -r /tmp/dist/* /usr/share/nginx/html/
-            sudo rm -rf /tmp/dist
+            sudo cp -r /tmp/frontend/dist/* /usr/share/nginx/html/
+            sudo rm -rf /tmp/frontend
             sudo systemctl restart nginx
