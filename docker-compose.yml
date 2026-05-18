@@ -14,7 +14,7 @@ services:
       - "5075:5075"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnectionString=Server=mssql;Database=WarehouseManagementSystem;User=sa;Password=StrongP@ass1234;Encrypt=False;TrustServerCertificate=True
+      - ConnectionStrings__DefaultConnectionString=Server=mssql;Database=WarehouseManagementSystem;User=sa;Password=Str0ngP@ssw0rd!2026;Encrypt=False;TrustServerCertificate=True
 
     depends_on:
       - mssql
