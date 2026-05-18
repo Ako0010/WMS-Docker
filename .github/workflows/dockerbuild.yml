@@ -52,8 +52,12 @@ jobs:
         
 
   deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    runs-on: ${{matrix.os}}
 
     steps:
       - name: Deploy to EC2
@@ -62,11 +66,13 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
 
           script: |
             if [ ! -d "WMS-Docker/.git" ]; then
             git clone https://github.com/Ako0010/WMS-Docker.git
             fi
+
             cd WMS-Docker
             git pull origin main
             docker compose pull
