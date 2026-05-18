@@ -14,7 +14,7 @@ services:
   api:
     build: ./api
     ports:
-      - "5075:5075"
+      - "8080:8080"
     restart: always
     environment:
     - ASPNETCORE_ENVIRONMENT=Development
