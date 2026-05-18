@@ -11,7 +11,7 @@ const Location = () => {
 
   const loadLocations = async () => {
     try {
-      const res = await api.get("/api/location");
+      const res = await api.get("/location");
       setLocations(res.data);
     } catch (err) {
       console.log(err);
@@ -25,7 +25,7 @@ const Location = () => {
     }
 
     try {
-      await api.post("/api/location/add", { 
+      await api.post("/location/add", { 
         Code: code
        });
       setCode("");
@@ -39,7 +39,7 @@ const Location = () => {
     if (!window.confirm("Delete location?")) return;
 
     try {
-      await api.delete(`/api/location/delete/${id}`);
+      await api.delete(`/location/delete/${id}`);
       loadLocations();
     } catch (err) {
       console.error(err.response.data || err.message);  

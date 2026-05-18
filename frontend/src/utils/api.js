@@ -21,7 +21,7 @@ const refreshTokens = async () => {
   if (!refreshToken) throw new Error("No refresh token");
 
   const res = await axios.post(
-    "/api/Auth/refresh",
+    "/Auth/refresh",
     { refreshToken },
     
     {

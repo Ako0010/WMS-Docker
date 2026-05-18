@@ -6,7 +6,7 @@ const CategoryAdd = () => {
   const [name, setName] = useState("");
 
   const getCategories = () => {
-    api.get("/api/category/get-all")
+    api.get("/category/get-all")
       .then(res => {
         const data = res.data.data || res.data;
         setCategories(data);
@@ -27,7 +27,7 @@ const CategoryAdd = () => {
     }
 
     try {
-      await api.post("/api/category/add", { name });
+      await api.post("/category/add", { name });
       setName("");
       getCategories();
     } catch {
@@ -40,7 +40,7 @@ const CategoryAdd = () => {
     if (!confirmDelete) return;
 
     try {
-      await api.delete(`/api/category/delete/${id}`);
+      await api.delete(`/category/delete/${id}`);
       getCategories();
     } catch {
       alert("Delete failed");

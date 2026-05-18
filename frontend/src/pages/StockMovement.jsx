@@ -11,7 +11,7 @@ const StockMovement = () => {
 
   const loadMovements = async () => {
     try {
-      const res = await api.get("/api/stockmovement");
+      const res = await api.get("/stockmovement");
       setMovements(res.data);
     } catch (err) {
       console.log(err);

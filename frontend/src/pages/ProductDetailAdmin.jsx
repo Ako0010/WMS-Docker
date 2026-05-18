@@ -22,7 +22,7 @@ const ProductDetailAdmin = () => {
 
   const getProduct = async () => {
     try {
-      const res = await api.get(`/api/product/${id}`);
+      const res = await api.get(`/product/${id}`);
       const data = res.data.data || res.data;
       setProduct(data);
       setForm({
@@ -40,7 +40,7 @@ const ProductDetailAdmin = () => {
   };
   const getCategories = async () => {
     try {
-      const res = await api.get("/api/category/get-all");
+      const res = await api.get("/category/get-all");
       setCategories(res.data.data || res.data);
     } catch (err) {
       console.error(err);
@@ -48,7 +48,7 @@ const ProductDetailAdmin = () => {
   };
   const getLocations = async () => {
     try {
-      const res = await api.get("/api/location");
+      const res = await api.get("/location");
       setLocations(res.data.data || res.data);
     } catch (err) {
       console.error(err);
@@ -63,7 +63,7 @@ const ProductDetailAdmin = () => {
 
   const handleUpdate = async () => {
     try {
-      await api.put(`/api/product/update/${id}`, form);
+      await api.put(`/product/update/${id}`, form);
       setEditMode(false);
       getProduct();
     } catch {
@@ -78,7 +78,7 @@ const ProductDetailAdmin = () => {
     if (!confirmDelete) return;
 
     try {
-      await api.delete(`/api/product/delete/${id}`);
+      await api.delete(`/product/delete/${id}`);
       navigate("/admin/products");
     } catch {
       alert("Delete failed");

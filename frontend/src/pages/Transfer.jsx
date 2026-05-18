@@ -12,8 +12,8 @@ const Transfer = () => {
   });
 
   useEffect(() => {
-    api.get("/api/product/get-all").then((res) => setProducts(res.data.data));
-    api.get("/api/location").then((res) => setLocations(res.data));
+    api.get("/product/get-all").then((res) => setProducts(res.data.data));
+    api.get("/location").then((res) => setLocations(res.data));
   }, []);
 
   const selectedProduct = products.find((p) => p.id === form.productId);
@@ -42,7 +42,7 @@ const Transfer = () => {
     }
 
     try {
-      await api.post(`/api/transfer/add`, {
+      await api.post(`/transfer/add`, {
         ProductId: Number(form.productId),
         FromId: Number(form.fromId),
         ToId: Number(form.toId),

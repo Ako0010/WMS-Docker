@@ -17,13 +17,13 @@ const ProductDetailUser = () => {
   }, [id]);
   
   const loadProduct = async () => {
-    const res = await api.get(`/api/product/${id}`);
+    const res = await api.get(`/product/${id}`);
     setProduct(res.data.data || res.data);
   };
 
   const loadMovements = async () => {
     try {
-      const res = await api.get(`/api/StockMovement/${id}`);
+      const res = await api.get(`/StockMovement/${id}`);
       setMovements(res.data.data || res.data);
     } catch {}
   };
@@ -59,7 +59,7 @@ const ProductDetailUser = () => {
     }
 
     try {
-      await api.post("/api/order/create", {
+      await api.post("/order/create", {
         productId: Number(id),
         quantity: Number(quantity),
         customerName: customer

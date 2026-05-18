@@ -12,8 +12,8 @@ const UserDashboard = () => {
   }, []);
 
   const loadData = async () => {
-    const productRes = await api.get("/api/product/get-all");
-    const orderRes = await api.get("/api/order/my-orders");
+    const productRes = await api.get("/product/get-all");
+    const orderRes = await api.get("/order/my-orders");
 
     setProducts(productRes.data.data || productRes.data);
     setOrders(orderRes.data.data || orderRes.data);

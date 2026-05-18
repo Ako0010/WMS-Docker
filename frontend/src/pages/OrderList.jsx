@@ -6,7 +6,7 @@ const Orders = () => {
   const [search, setSearch] = useState("");
 
   const load = async () => {
-    const res = await api.get("/api/order");
+    const res = await api.get("/order");
     setOrders(res.data);
   };
 
@@ -20,7 +20,7 @@ const Orders = () => {
   }, []);
 
   const complete = async (id) => {
-    await api.post(`/api/order/complete/${id}`);
+    await api.post(`/order/complete/${id}`);
     load();
   };
 

@@ -9,7 +9,7 @@ const UserProductView = () => {
 
   const loadProducts = async () => {
     try {
-      const res = await api.get("/api/product/get-all");
+      const res = await api.get("/product/get-all");
       setProducts(res.data.data || res.data);
     } catch (err) {
       console.log(err);

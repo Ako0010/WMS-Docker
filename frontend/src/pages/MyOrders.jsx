@@ -25,7 +25,7 @@ const MyOrders = () => {
    
   const processOrder = async (id) => {
     try {
-      await api.post(`/api/order/processing/${id}`);
+      await api.post(`/order/processing/${id}`);
       loadOrders();
     } catch (err) {
       console.error(err);
@@ -34,7 +34,7 @@ const MyOrders = () => {
 
   const finishOrder = async (id) => {
     try {
-      await api.post(`/api/order/finish-processing/${id}`);
+      await api.post(`/order/finish-processing/${id}`);
       loadOrders();
     } catch (err) {
       console.error(err);

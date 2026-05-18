@@ -26,7 +26,7 @@ const Register = () => {
     try {
       setLoading(true);
 
-      await api.post("/api/auth/register", form);
+      await api.post("/auth/register", form);
 
       navigate("/");
     } catch (err) {
