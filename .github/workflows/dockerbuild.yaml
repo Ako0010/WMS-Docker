@@ -3,77 +3,54 @@ name: WMS CI/CD
 on:
   push:
     branches: ["master"]
-  workflow_dispatch:
 
 jobs:
-  test:
-    if: github.event_name == 'push'
-    strategy:
-      matrix:
-        node-version: ["24.15.0"]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v6
-
-      - name: Install Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install Frontend Dependencies
-        working-directory: ./frontend
-        run: npm install
-
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      # Repo clone
+      - name: Checkout
+        uses: actions/checkout@v3
+
 
       - name: Docker login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: API image build and push to docker-hub
+      - name: Build & Push API
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/wms-api ./api
-          docker push ${{ secrets.DOCKER_USERNAME }}/wms-api
+          docker build -t akodevv/wms-api:${{ github.sha }} ./api
+          docker tag akodevv/wms-api:${{ github.sha }} akodevv/wms-api:latest
+          docker push akodevv/wms-api:${{ github.sha }}
+          docker push akodevv/wms-api:latest
 
-      - name: Frontend image build and push to docker-hub
+
+      - name: Build & Push Frontend
         run: |
-          docker build --no-cache -t ${{ secrets.DOCKER_USERNAME }}/wms-frontend ./frontend
-          docker push ${{ secrets.DOCKER_USERNAME }}/wms-frontend
+          docker build --no-cache -t akodevv/wms-frontend:${{ github.sha }} ./frontend
+          docker tag akodevv/wms-frontend:${{ github.sha }} akodevv/wms-frontend:latest
+          docker push akodevv/wms-frontend:${{ github.sha }}
+          docker push akodevv/wms-frontend:latest
 
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
+          username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
-          port: 22
           script: |
-            if [ ! -d "WMS-Docker/.git" ]; then
-              git clone https://github.com/Ako0010/WMS-Docker.git
-            fi
-            cd WMS-Docker
+            cd /home/ec2-user/WMS-Docker || git clone https://github.com/Ako0010/WMS-Docker.git
             
-
+            cd /home/ec2-user/WMS-Docker
+            
+            git fetch --all
             git reset --hard origin/master
-            git pull origin master
-        
-            
-            docker compose pull
-            
 
             docker compose down
-            
+
+            docker system prune -af
+
+            docker compose pull
 
             docker compose up -d --force-recreate
-            
-
-            docker image prune -af
-            
