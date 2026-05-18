@@ -8,7 +8,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get("/api/product/get-all")
+    api.get("/product/get-all")
       .then(res => setProducts(res.data.data))
       .catch(err => console.error(err));
   }, []);
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
     <>
       <div className="page-header d-print-none mb-4">
         <div className="container-xl">
-          <h2 className="page-title">Dashboard</h2>
+          <h2 className="page-title">D</h2>
         </div>
       </div>
 

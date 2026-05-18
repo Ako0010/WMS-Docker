@@ -25,12 +25,12 @@ const AdminProductsView = () => {
   );
 
   const getProducts = () => {
-    api.get("/api/product/get-all")
+    api.get("/product/get-all")
       .then(res => setProducts(res.data.data));
   };
 
   const getCategories = () => {
-    api.get("/api/category/get-all")
+    api.get("/category/get-all")
       .then(res => {
         const data = res.data.data || res.data;
         setCategories(data);
@@ -38,7 +38,7 @@ const AdminProductsView = () => {
     };
 
   const getLocations = () => {
-    api.get("/api/location")
+    api.get("/location")
       .then(res => setLocations(res.data));
   };
 
