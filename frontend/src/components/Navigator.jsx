@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useTokens } from "../stores/tokenStore";
+import { useTokens } from "../stores/tokenstore";
 import { jwtDecode } from "jwt-decode";
 
 import Login from "../pages/Login";
