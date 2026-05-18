@@ -16,4 +16,4 @@ WORKDIR /app
 COPY --from=build /out .
 EXPOSE 5079
 
-ENTRYPOINT ["dotnet", "YourProject.dll"]
+ENTRYPOINT ["dotnet", "WarehouseManagementSystem.Api.dll"]
