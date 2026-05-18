@@ -16,7 +16,7 @@ services:
     restart: always
     environment:
     - ASPNETCORE_ENVIRONMENT=Development
-    - ConnectionStrings__DefaultConnectionString=Server=mssql,1433;Database=WarehouseManagementSystem;User Id=sa;Password=DBPassword123!;Encrypt=False;TrustServerCertificate=True
+    - ConnectionStrings__DefaultConnectionString=Server=mssql,1433;Database=WarehouseManagementSystemDb;User Id=sa;Password=DBPassword123!;Encrypt=False;TrustServerCertificate=True
 
     depends_on:
       - mssql
