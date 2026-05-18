@@ -5,6 +5,7 @@ services:
     build: ./frontend
     ports:
       - "3000:80"
+    restart: always
     depends_on:
       - api
 
@@ -12,17 +13,25 @@ services:
     build: ./api
     ports:
       - "5075:5075"
+    restart: always
     environment:
     - ASPNETCORE_ENVIRONMENT=Development
-    - ConnectionStrings__DefaultConnectionString=Server=mssql,1433;Database=WarehouseManagementSystem;User Id=sa;Password=Str0ngP@ssw0rd!2026;Encrypt=False;TrustServerCertificate=True
+    - ConnectionStrings__DefaultConnectionString=Server=mssql,1433;Database=WarehouseManagementSystem;User Id=sa;Password=DBPassword123!;Encrypt=False;TrustServerCertificate=True
 
     depends_on:
       - mssql
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
     environment:
-      SA_PASSWORD: "Str0ngP@ssw0rd!2026"
       ACCEPT_EULA: "Y"
+      SA_PASSWORD: "DBPassword123!"
+      MSSQL_PID: "Developer"
     ports:
       - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+volumes:
+  mssql_data:
