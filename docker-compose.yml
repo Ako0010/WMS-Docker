@@ -11,10 +11,10 @@ services:
   api:
     build: ./backend
     ports:
-      - "5296:5296"
+      - "5075:5075"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnectionString=Server=mssql;Database=WarehouseManagementSystem;User=sa;Password=YourStrong!Pass123
+      - ConnectionStrings__DefaultConnectionString=Server=mssql;Database=WarehouseManagementSystem;User=sa;Password=Pass@123;Encrypt=False;TrustServerCertificate=True
 
     depends_on:
       - mssql

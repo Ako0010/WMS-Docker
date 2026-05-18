@@ -3,7 +3,7 @@ import { useTokens } from "../stores/tokenStore.js";
 
 
 const api = axios.create({
-    baseURL: 'http://localhost:5079/',
+    baseURL: '/api',
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ const refreshTokens = async () => {
   if (!refreshToken) throw new Error("No refresh token");
 
   const res = await axios.post(
-    "http://localhost:5079/api/Auth/refresh",
+    "/api/Auth/refresh",
     { refreshToken },
     
     {
