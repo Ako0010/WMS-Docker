@@ -53,7 +53,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    await api.post("/api/product/add", form);
+    await api.post("/product/add", form);
 
     setForm({
       name: "",
@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
 };
 
   const handleDelete = async (id) => {
-    await api.delete(`/api/product/delete/${id}`);
+    await api.delete(`/product/delete/${id}`);
     getProducts();
   };
 
