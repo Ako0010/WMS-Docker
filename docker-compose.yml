@@ -9,7 +9,7 @@ services:
       - api
 
   api:
-    build: ./backend
+    build: ./api
     ports:
       - "5075:5075"
     environment:
