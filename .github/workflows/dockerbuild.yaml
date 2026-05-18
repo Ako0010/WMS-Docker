@@ -47,10 +47,10 @@ jobs:
             git fetch --all
             git reset --hard origin/master
 
+            docker compose pull frontend api
+
             docker compose down
-
-            docker system prune -af
-
-            docker compose pull
-
+            
             docker compose up -d --force-recreate
+
+            docker image prune -f
