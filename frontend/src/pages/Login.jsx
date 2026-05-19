@@ -51,7 +51,7 @@ const Login = () => {
 
       <div className="card shadow-lg p-4 w-95">
 
-        <h2 className="text-center mb-4">Login</h2>
+        <h2 className="text-center mb-4">Logi</h2>
 
         <input
           className="form-control mb-3"
